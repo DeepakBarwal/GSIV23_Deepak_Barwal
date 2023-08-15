@@ -4,7 +4,7 @@ import MenuSearchLightGray from "../svg/MenuSearchLightGray";
 
 const SearchBar = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [isFocused, setIsFocused] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     <>
