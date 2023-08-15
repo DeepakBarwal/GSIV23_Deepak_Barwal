@@ -4,7 +4,7 @@ export const moviesApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUpcomingMoviesByPopularity: builder.query({
       query: ({ page }) => ({
-        url: "",
+        url: "/discover/movie",
         params: {
           api_key: process.env.REACT_APP_API_KEY,
           language: "en-US",
@@ -14,7 +14,19 @@ export const moviesApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    getParticularMovie: builder.query({
+      query: ({ movieId }) => ({
+        url: `/movie/${movieId}`,
+        params: {
+          api_key: process.env.REACT_APP_API_KEY,
+          language: "en-US",
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetUpcomingMoviesByPopularityQuery } = moviesApiSlice;
+export const {
+  useGetUpcomingMoviesByPopularityQuery,
+  useGetParticularMovieQuery,
+} = moviesApiSlice;
