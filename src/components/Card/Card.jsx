@@ -1,20 +1,25 @@
 import "./Card.css";
+import { Link } from "react-router-dom";
 import Rating from "../Rating/Rating";
+import { API_POSTER_URL } from "../../constants/urls";
 
-const Card = () => {
+const Card = ({ movie }) => {
   return (
     <div className="card">
-      <div className="card-image"></div>
+      <Link to={`/details/${movie?.id}`}>
+        <img
+          className="card-image"
+          src={`${API_POSTER_URL}/${movie?.poster_path}`}
+          alt={`${movie?.original_title}`}
+        />
+      </Link>
       <div className="card-text">
-        <span className="title">Title</span>
-        <Rating value={2} />
+        <span className="title">
+          <strong>{movie?.original_title}</strong>
+        </span>
+        <Rating value={2.5} />
       </div>
-      <div className="description">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, sed
-        harum officia voluptatibus nulla voluptatem maxime rem eveniet! Facilis
-        necessitatibus nesciunt tenetur. Quisquam placeat quidem quam
-        repellendus error illo saepe!
-      </div>
+      <div className="description">{movie?.overview}</div>
     </div>
   );
 };

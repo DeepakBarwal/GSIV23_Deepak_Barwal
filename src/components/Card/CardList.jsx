@@ -1,14 +1,12 @@
 import "./CardList.css";
 import Card from "./Card";
 
-const CardList = () => {
+const CardList = ({ movies }) => {
   return (
     <div className="card-list">
-      {[
-        ...Array.from({ length: 20 }).map((item, index) => (
-          <Card key={index} />
-        )),
-      ]}
+      {movies?.map((item, index) => (
+        <Card key={item.id} movie={item} />
+      ))}
     </div>
   );
 };

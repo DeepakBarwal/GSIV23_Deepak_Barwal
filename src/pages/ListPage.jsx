@@ -3,16 +3,15 @@ import Header from "../components/Header/Header";
 import { useGetUpcomingMoviesByPopularityQuery } from "../store/slices/moviesApiSlice";
 
 const ListPage = () => {
-  const { data: movies, isLoading } = useGetUpcomingMoviesByPopularityQuery({
+  const { data, isLoading } = useGetUpcomingMoviesByPopularityQuery({
     page: 1,
   });
-
-  console.log(movies);
+  console.log(data);
 
   return (
     <div>
       <Header />
-      <CardList />
+      <CardList movies={data?.results} />
     </div>
   );
 };
