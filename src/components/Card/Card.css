@@ -1,7 +1,7 @@
 .card {
   background-color: white;
-  height: 370px;
-  max-height: 370px;
+  height: 500px;
+  max-height: 100%;
   width: 250px;
   max-width: 100%;
   border: none;
@@ -26,8 +26,8 @@
 }
 
 .title {
-  margin-left: 5px;
-  font-size: 20px;
+  margin-left: 8px;
+  font-size: 18px;
   background: #f4f4f4;
   border: 1px solid #ddd;
 }
@@ -35,7 +35,8 @@
 .description {
   margin: 5px 5px;
   max-width: 100%;
-  max-height: 15%;
+  height: 25%;
+  max-height: 25%;
   height: 2.5em; /* Set a fixed height */
   overflow: hidden; /* Hide overflow content */
   text-overflow: ellipsis; /* Add ellipsis for long text */

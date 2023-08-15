@@ -7,12 +7,11 @@ const ListPage = () => {
   const { data, isLoading } = useGetUpcomingMoviesByPopularityQuery({
     page: 1,
   });
-  console.log(data);
 
   return (
     <div>
       <Header headerComponent={() => <SearchBar className="search-bar" />} />
-      <CardList movies={data?.results} />
+      {!isLoading && <CardList movies={data?.results} />}
     </div>
   );
 };

@@ -23,10 +23,20 @@ export const moviesApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    getMovieCredits: builder.query({
+      query: ({ movieId }) => ({
+        url: `/movie/${movieId}/credits`,
+        params: {
+          api_key: process.env.REACT_APP_API_KEY,
+          language: "en-US",
+        },
+      }),
+    }),
   }),
 });
 
 export const {
   useGetUpcomingMoviesByPopularityQuery,
   useGetParticularMovieQuery,
+  useGetMovieCreditsQuery,
 } = moviesApiSlice;

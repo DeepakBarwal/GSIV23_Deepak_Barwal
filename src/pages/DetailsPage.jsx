@@ -2,16 +2,25 @@ import "./DetailsPage.css";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Rating from "../components/Rating/Rating";
-import { useGetParticularMovieQuery } from "../store/slices/moviesApiSlice";
+import {
+  useGetParticularMovieQuery,
+  useGetMovieCreditsQuery,
+} from "../store/slices/moviesApiSlice";
 import { API_POSTER_URL } from "../constants/urls";
 import { minutesToHhMm } from "../utils/index";
 
 const DetailsPage = () => {
   const { id: movieId } = useParams();
-  const { data: movieDetails, isLoading } = useGetParticularMovieQuery({
+  const { data: movieDetails, isLoadingMovie } = useGetParticularMovieQuery({
     movieId,
   });
-  console.log(movieDetails);
+  const { data: movieCredits, isLoadingCredits } = useGetMovieCreditsQuery({
+    movieId,
+  });
+
+  const director = movieCredits?.crew?.find(
+    (crewmate) => crewmate.job.toLowerCase() === "director"
+  );
 
   return (
     <div>
@@ -20,12 +29,16 @@ const DetailsPage = () => {
           <h2 className="movie-details-header">Movie Details</h2>
         )}
       />
-      {isLoading ? (
+      {isLoadingMovie && isLoadingCredits ? (
         "Loading..."
       ) : (
         <div className="details-container">
           <img
-            src={`${API_POSTER_URL}${movieDetails?.poster_path}`}
+            src={
+              movieDetails
+                ? `${API_POSTER_URL}${movieDetails?.poster_path}`
+                : ""
+            }
             alt=""
             className="details-image"
           />
@@ -39,12 +52,23 @@ const DetailsPage = () => {
             </h1>
             <p className="movie-subtitle">
               {movieDetails?.release_date.split("-")[0]} |{" "}
-              {`${minutesToHhMm(parseInt(movieDetails?.runtime))} (HH:MM)` ||
-                "Unknown"}{" "}
-              | Director
+              {movieDetails?.runtime
+                ? `${minutesToHhMm(parseInt(movieDetails?.runtime))}`
+                : "Unknown"}{" "}
+              | {director?.name}
             </p>
-            <p className="movie-cast">Cast: Actor 1,...</p>
-            <p className="movie-description">{movieDetails?.overview}</p>
+            <div className="movie-cast">
+              Cast:{" "}
+              {movieCredits?.cast?.map((actor) => (
+                <div key={actor.id}>
+                  {actor.character} played by{" "}
+                  <strong>{actor.original_name}</strong>
+                </div>
+              ))}
+            </div>
+            <p className="movie-description">
+              Description: {movieDetails?.overview}
+            </p>
           </div>
         </div>
       )}
