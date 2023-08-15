@@ -1,3 +1,4 @@
+import Header from "../components/Header";
 import { useGetUpcomingMoviesByPopularityQuery } from "../store/slices/moviesApiSlice";
 
 const ListPage = () => {
@@ -7,7 +8,11 @@ const ListPage = () => {
 
   console.log(movies);
 
-  return <div>ListPage</div>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 };
 
 export default ListPage;
