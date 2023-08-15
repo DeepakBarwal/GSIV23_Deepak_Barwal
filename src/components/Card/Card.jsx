@@ -17,7 +17,7 @@ const Card = ({ movie }) => {
         <span className="title">
           <strong>{movie?.original_title}</strong>
         </span>
-        <Rating value={2.5} />
+        <Rating value={(movie?.vote_average / 2).toFixed(2)} />
       </div>
       <div className="description">{movie?.overview}</div>
     </div>
