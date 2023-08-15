@@ -15,6 +15,7 @@ const SearchBar = (props) => {
         onChange={(e) => setSearchTerm(e.target.value)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        placeholder="Search"
         {...props}
       />
     </>
