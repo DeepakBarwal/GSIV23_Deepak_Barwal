@@ -1,4 +1,4 @@
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import { useGetUpcomingMoviesByPopularityQuery } from "../store/slices/moviesApiSlice";
 
 const ListPage = () => {

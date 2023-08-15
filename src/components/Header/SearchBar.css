@@ -1,0 +1,16 @@
+.search-bar {
+  padding: 7px;
+  width: 50%;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.search-icon-light {
+  position: absolute;
+  top: 10%;
+  left: 2px;
+}
+
+.search-bar:focus {
+  outline: none;
+}
