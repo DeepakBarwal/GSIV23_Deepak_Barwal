@@ -14,3 +14,9 @@
 .home-icon {
   margin-right: 1rem;
 }
+
+.movie-details-header {
+  font-size: 24px;
+  margin: 0 12px;
+  font-weight: 400;
+}

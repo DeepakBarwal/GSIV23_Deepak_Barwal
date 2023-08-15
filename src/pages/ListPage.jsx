@@ -1,5 +1,6 @@
 import CardList from "../components/Card/CardList";
 import Header from "../components/Header/Header";
+import SearchBar from "../components/Header/SearchBar/SearchBar";
 import { useGetUpcomingMoviesByPopularityQuery } from "../store/slices/moviesApiSlice";
 
 const ListPage = () => {
@@ -10,7 +11,7 @@ const ListPage = () => {
 
   return (
     <div>
-      <Header />
+      <Header headerComponent={() => <SearchBar className="search-bar" />} />
       <CardList movies={data?.results} />
     </div>
   );

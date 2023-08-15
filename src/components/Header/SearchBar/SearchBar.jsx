@@ -1,6 +1,6 @@
 import "./SearchBar.css";
 import { useState } from "react";
-import MenuSearchLightGray from "../svg/MenuSearchLightGray";
+import MenuSearchLightGray from "../../svg/MenuSearchLightGray";
 
 const SearchBar = (props) => {
   const [searchTerm, setSearchTerm] = useState("");

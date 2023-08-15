@@ -7,3 +7,10 @@
 a {
   text-decoration: none;
 }
+
+body {
+  font-family: "Play", sans-serif;
+  font-family: "Raleway", sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-family: "Saira", sans-serif;
+}
