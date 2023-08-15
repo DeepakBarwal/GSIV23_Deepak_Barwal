@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div className="header-container">
       <SearchBar className="search-bar" />
-      <Home />
+      <Home className="home-icon" />
     </div>
   );
 };

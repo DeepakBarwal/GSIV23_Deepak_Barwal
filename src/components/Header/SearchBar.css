@@ -1,17 +1,19 @@
 .search-bar {
   padding: 7px;
   width: 40%;
-  border: 1px solid gray;
+  height: 70%;
+  border: none;
   border-radius: 10px;
   background-color: #dfdfdf;
   text-indent: 3%;
   font-size: 1.2rem;
+  margin-left: 0.7%;
 }
 
 .search-icon-light {
   position: absolute;
-  top: 18%;
-  left: 0.6%;
+  top: 30%;
+  left: 1%;
 }
 
 .search-bar:focus {
