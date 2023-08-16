@@ -24,3 +24,15 @@ export const getSearchResults = async (keywords, page = 1, options = {}) => {
   );
   return res.data;
 };
+
+export const getSearchSuggestions = async (
+  keywords,
+  page = 1,
+  options = {}
+) => {
+  const res = await api.get(
+    `/search/multi?api_key=${process.env.REACT_APP_API_KEY}&query=${keywords}&language=en-US&include_adult=false`,
+    options
+  );
+  return res.data;
+};

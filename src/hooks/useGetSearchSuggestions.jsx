@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { getSearchResults } from "../api/axios";
+import { getSearchSuggestions } from "../api/axios";
 
-const useSearchResults = (keyword, pageNum = 1) => {
+const useGetSearchSuggestions = (keyword, pageNum = 1) => {
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -17,7 +17,7 @@ const useSearchResults = (keyword, pageNum = 1) => {
       const controller = new AbortController();
       const { signal } = controller;
 
-      getSearchResults(keyword, pageNum, { signal })
+      getSearchSuggestions(keyword, pageNum, { signal })
         .then((data) => {
           setResults((prev) => [
             ...prev?.filter((item) =>
@@ -42,4 +42,4 @@ const useSearchResults = (keyword, pageNum = 1) => {
   return { isError, isLoading, error, results, hasNextPage };
 };
 
-export default useSearchResults;
+export default useGetSearchSuggestions;

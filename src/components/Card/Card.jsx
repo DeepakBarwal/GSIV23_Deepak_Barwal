@@ -16,7 +16,7 @@ const Card = forwardRef(({ movie }, ref) => {
       </Link>
       <div className="card-text">
         <span className="title">
-          <strong>{movie?.original_title}</strong>
+          <strong>{movie?.title}</strong>
         </span>
         <Rating value={(movie?.vote_average / 2).toFixed(2)} />
       </div>
