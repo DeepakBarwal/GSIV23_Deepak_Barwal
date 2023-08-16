@@ -1,22 +1,16 @@
 import "./SearchBar.css";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSearchMovieByNameQuery } from "../../../store/slices/moviesApiSlice";
-import { setSearchResults } from "../../../store/slices/searchResultsSlice";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MenuSearchLightGray from "../../svg/MenuSearchLightGray";
 
 const SearchBar = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isFocused, setIsFocused] = useState(false);
-  const dispatch = useDispatch();
-  const { data } = useSearchMovieByNameQuery({
-    searchTerm,
-    page: 1,
-  });
+  const navigate = useNavigate();
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      dispatch(setSearchResults(data));
+      navigate(`/search/${searchTerm}`);
       setSearchTerm("");
     }
   };

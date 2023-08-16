@@ -55,7 +55,7 @@ const DetailsPage = () => {
               {movieDetails?.runtime
                 ? `${minutesToHhMm(parseInt(movieDetails?.runtime))}`
                 : "Unknown"}{" "}
-              | {director?.name}
+              | {director?.name || "Unknown"}
             </p>
             <div className="movie-cast">
               Cast:{" "}
