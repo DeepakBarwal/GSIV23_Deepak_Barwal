@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# GSynergy React Web Challenge – A Two Page React Web App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Movies Browser built with react & redux-toolkit
 
-## Available Scripts
+This is a two-page web app for browsing and searching movies
+available at this online API: https://developers.themoviedb.org/3/getting-started/introduction
 
-In the project directory, you can run:
+Challenges and Improvements are by no means exhaustive and are in no particular order.
 
-### `npm start`
+<!-- toc -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [API Key](#API-KEY)
+- [Usage](#usage)
+  - [Env Variables](#env-variables)
+  - [Install Dependencies](#install-dependencies)
+  - [Run](#run)
+- [Build & Deploy](#build--deploy)
+- [Challenges](#challenges)
+- [Improvements](#improvements)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## API KEY
 
-### `npm test`
+To get an API Key:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Create a personal account at: https://www.themoviedb.org/account/signup
+2. Once you have created an account, go to:
+   https://www.themoviedb.org/settings/api to create an API key
+   - a. Usage: Personal
+   - b. Application Name: Interview
+   - c. Application URL: None
+   - d. Application Summary: For a developer interview project
 
-### `npm run build`
+## Usage
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Env Variables
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+REACT_APP_API_KEY -> `"your api key here"`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Install Dependencies
 
-### `npm run eject`
+```
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Run
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Build & Deploy
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Create frontend production build
 
-## Learn More
+```
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Challenges
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- SearchBar -> Implemented debouncing and caching (using redux store) in search component to reduce the number of network calls (API Polling) made when the user types the search term.
 
-### Code Splitting
+- /hooks -> Created custom re-usable hooks to getSearchSuggestions, getSearchResults and getUpcomingMovies.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Rating -> Custom re-usable Rating component that takes in rating value and text (optional) and renders it in Star format.
 
-### Analyzing the Bundle Size
+- Header -> Custom re-usable Header component that follows "Render Props Pattern" which makes it pretty flexible to accept any component (ours or third party).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- svg/ ->Used the original SVG symbols given in mock-up by exporting them as svg and converting to native react components.
 
-### Making a Progressive Web App
+- CardList -> Used "Intersection Observer" to implement infinite scroll.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Improvements
 
-### Advanced Configuration
+- Instead of using css directly, usage of an external css library would have made the development time shorter.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Shimmer UI instead of well... nothing at all, would enhance user experience.
 
-### Deployment
+- Server Side Rendering on List Page (Main page) can take the burden off the client and improve performance.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Introduce Auth in this app so that users can have watchlists, submit reviews, etc. Optimistic UI updates can be implemented to enhance user experience while rating (reviewing) or wishlisting.
 
-### `npm run build` fails to minify
+- Scalability -> Because the risk of rendering a large DOM size is high, we can use "virtualized lists" within a container of limited height so that only the visible options are rendered.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Accessiblity -> Implementing ARIA attributes and roles can provide inclusive experience for people using screen-readers and performing keyboard interactions.
+
+- Preloading images, responsive images via srcSet attribute can also improve user experience.
+
+- Code splitting is not evident at this stage of development, but if the app ever gets bigger, it will also make sense to use React.lazy() and React Suspense to dynamically import components on-demand.
