@@ -1,11 +1,12 @@
 import "./Card.css";
+import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import Rating from "../Rating/Rating";
 import { API_POSTER_URL } from "../../constants/urls";
 
-const Card = ({ movie }) => {
-  return (
-    <div className="card">
+const Card = forwardRef(({ movie }, ref) => {
+  const cardBody = (
+    <>
       <Link to={`/details/${movie?.id}`}>
         <img
           className="card-image"
@@ -20,8 +21,17 @@ const Card = ({ movie }) => {
         <Rating value={(movie?.vote_average / 2).toFixed(2)} />
       </div>
       <div className="description">{movie?.overview}</div>
-    </div>
+    </>
   );
-};
+
+  const content = ref ? (
+    <div ref={ref} className="card">
+      {cardBody}
+    </div>
+  ) : (
+    <div className="card">{cardBody}</div>
+  );
+  return content;
+});
 
 export default Card;
