@@ -42,3 +42,12 @@
   text-overflow: ellipsis; /* Add ellipsis for long text */
   white-space: nowrap; /* Prevent wrapping */
 }
+
+@media only screen and (max-width: 512px) {
+  .card {
+    height: 400px;
+    max-height: 100%;
+    width: 350px;
+    max-width: 100%;
+  }
+}
