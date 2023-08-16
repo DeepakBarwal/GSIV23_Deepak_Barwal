@@ -87,3 +87,5 @@ npm run build
 - Preloading images, responsive images via srcSet attribute can also improve user experience.
 
 - Code splitting is not evident at this stage of development, but if the app ever gets bigger, it will also make sense to use React.lazy() and React Suspense to dynamically import components on-demand.
+
+- Add unit-tests and RTL DOM tests, include appropriate logging levels and implement this app as a PWA or SSR using Remix.js or NextJS.
