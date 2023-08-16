@@ -68,19 +68,23 @@ const CardList = ({ keyword }) => {
   if (isErrorUpcomingMovie) return <p>Error: {errorUpcomingMovie.message}</p>;
   if (isErrorSearchResults) return <p>Error: {errorSearchResults.message}</p>;
 
-  const content = !keyword
-    ? moviesData?.map((item, i) => {
-        if (moviesData?.length === i + 1) {
-          return <Card ref={lastMovieRef} key={item.id} movie={item} />;
-        }
-        return <Card key={item.id} movie={item} />;
-      })
-    : searchResults?.map((item, i) => {
-        if (searchResults?.length === i + 1) {
-          return <Card ref={lastMovieRef} key={item.id} movie={item} />;
-        }
-        return <Card key={item.id} movie={item} />;
-      });
+  const content = !keyword ? (
+    moviesData?.map((item, i) => {
+      if (moviesData?.length === i + 1) {
+        return <Card ref={lastMovieRef} key={item.id} movie={item} />;
+      }
+      return <Card key={item.id} movie={item} />;
+    })
+  ) : searchResults?.length === 0 ? (
+    <h1>No movie found with that name</h1>
+  ) : (
+    searchResults?.map((item, i) => {
+      if (searchResults?.length === i + 1) {
+        return <Card ref={lastMovieRef} key={item.id} movie={item} />;
+      }
+      return <Card key={item.id} movie={item} />;
+    })
+  );
 
   return <div className="card-list">{content}</div>;
 };
