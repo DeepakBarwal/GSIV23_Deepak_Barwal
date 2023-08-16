@@ -72,7 +72,7 @@ npm run build
 
 ## Improvements
 
-- Instead of using css directly, usage of an external css library would have made the development time shorter.
+- Instead of using css directly, usage of an external css library would have made the development time shorter. Also, the app currently is devoid of any colors.
 
 - Shimmer UI instead of well... nothing at all, would enhance user experience.
 
