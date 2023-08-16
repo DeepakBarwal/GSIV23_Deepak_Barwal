@@ -32,6 +32,17 @@ export const moviesApiSlice = apiSlice.injectEndpoints({
         },
       }),
     }),
+    searchMovieByName: builder.query({
+      query: ({ searchTerm, page }) => ({
+        url: `/search/movie`,
+        params: {
+          api_key: process.env.REACT_APP_API_KEY,
+          query: searchTerm,
+          language: "en-US",
+          page,
+        },
+      }),
+    }),
   }),
 });
 
@@ -39,4 +50,5 @@ export const {
   useGetUpcomingMoviesByPopularityQuery,
   useGetParticularMovieQuery,
   useGetMovieCreditsQuery,
+  useSearchMovieByNameQuery,
 } = moviesApiSlice;
