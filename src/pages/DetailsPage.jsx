@@ -31,7 +31,7 @@ const DetailsPage = () => {
           <h2 className="movie-details-header">Movie Details</h2>
         )}
       />
-      <div className="arrow-back" onClick={() => navigate(-1)}>
+      <div className="arrow-back" role="button" onClick={() => navigate(-1)}>
         <ArrowBackGray />
       </div>
       {isLoadingMovie && isLoadingCredits ? (
