@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 import CardList from "../components/Card/CardList";
 import Header from "../components/Header/Header";
 import SearchBar from "../components/Header/SearchBar/SearchBar";
@@ -10,19 +9,25 @@ import {
 
 const ListPage = () => {
   const { keyword } = useParams();
-  const { data, isLoading } = useGetUpcomingMoviesByPopularityQuery({
-    page: 1,
-  });
-  const { data: searchResults } = useSearchMovieByNameQuery({
-    searchTerm: keyword,
-    page: 1,
-  });
+  const { data: movies, loadingUpcomingMovies } =
+    useGetUpcomingMoviesByPopularityQuery({
+      page: 1,
+    });
+  const { data: searchResults, isLoading: loadingSearchResults } =
+    useSearchMovieByNameQuery({
+      searchTerm: keyword,
+      page: 1,
+    });
 
   return (
     <div>
       <Header headerComponent={() => <SearchBar className="search-bar" />} />
-      {!isLoading && !keyword && <CardList movies={data?.results} />}
-      {keyword && searchResults && <CardList movies={searchResults?.results} />}
+      {!loadingUpcomingMovies && !keyword && (
+        <CardList movies={movies?.results} />
+      )}
+      {keyword && !loadingSearchResults && (
+        <CardList movies={searchResults?.results} />
+      )}
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import "./DetailsPage.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Rating from "../components/Rating/Rating";
+import ArrowBackGray from "../components/svg/ArrowBackGray";
 import {
   useGetParticularMovieQuery,
   useGetMovieCreditsQuery,
@@ -11,6 +12,7 @@ import { minutesToHhMm } from "../utils/index";
 
 const DetailsPage = () => {
   const { id: movieId } = useParams();
+  const navigate = useNavigate();
   const { data: movieDetails, isLoadingMovie } = useGetParticularMovieQuery({
     movieId,
   });
@@ -29,6 +31,9 @@ const DetailsPage = () => {
           <h2 className="movie-details-header">Movie Details</h2>
         )}
       />
+      <div className="arrow-back" onClick={() => navigate(-1)}>
+        <ArrowBackGray />
+      </div>
       {isLoadingMovie && isLoadingCredits ? (
         "Loading..."
       ) : (
